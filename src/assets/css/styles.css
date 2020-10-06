@@ -1,1 +1,15 @@
+.map {
+  background-color: brown;
+  height: 290px;
+  padding: auto;
+}
 
+.card {
+  display: inline-flex;
+  margin-top: 10px;
+  width: 100%;
+}
+.sidebar {
+  height: 100%;
+  width: 100%;
+}
