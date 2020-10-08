@@ -1,5 +1,22 @@
-.logo {
-  margin-left: 5px;
+a,
+a:hover,
+a:focus,
+a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+.dropdown {
+  float: right;
+  margin-top: 125px;
+}
+
+#searchCountry {
+  padding: 20px;
+  margin-top: -8px;
+  border: 0;
+  border-radius: 0;
+  background-color: brown;
 }
 
 .map {
@@ -22,7 +39,4 @@
 /*--------------- Media Queries ---------------*/
 
 @media screen and (max-width: 575px) {
-  .logo {
-    margin: auto;
-  }
 }
