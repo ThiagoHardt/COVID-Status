@@ -9,10 +9,10 @@ a:active {
 
 /*--------------- Header ---------------*/
 
-.dropdown {
+.dropdownCountries {
   float: right;
   margin-top: 125px;
-  width: 150px;
+  width: 170px;
 }
 
 /*--------------- Map ---------------*/
@@ -34,13 +34,27 @@ a:active {
 /*--------------- Sidebar ---------------*/
 
 .countries-table {
-  height: 100%;
   width: 100%;
+}
+
+.table-wrapper {
+  height: 650px;
+  overflow: auto;
 }
 
 /*--------------- Footer ---------------*/
 
 /*--------------- Media Queries ---------------*/
 
-@media screen and (max-width: 575px) {
+@media screen and (max-width: 400px) {
+  .dropdownCountries {
+    float: none;
+    display: block;
+    margin: auto auto 15px auto;
+  }
+
+  .logo {
+    margin: auto;
+    display: block;
+  }
 }
