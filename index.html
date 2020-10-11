@@ -12,116 +12,102 @@
   </head>
   <body>
     <div class="container-fluid">
-      <div class="row">
-        <div class="col col-lg-8 d-inline-block">
-          <img class="logo" src="src/assets/images/logo.png" />
+      <header>
+        <div class="row">
+          <div class="col col-lg-8 d-inline-block">
+            <img class="logo" src="src/assets/images/logo.png" />
 
-          <div class="dropdown">
-            <button
-              class="btn btn-secondary dropdown-toggle"
-              type="button"
-              data-toggle="dropdown"
-            >
-              Country <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu">
-              <input
-                class="form-control"
-                id="searchCountry"
-                type="text"
-                placeholder="Search.."
-              />
-              <li><a href="#">HTML</a></li>
-              <li><a href="#">CSS</a></li>
-              <li><a href="#">JavaScript</a></li>
-              <li><a href="#">jQuery</a></li>
-              <li><a href="#">Bootstrap</a></li>
-              <li><a href="#">Angular</a></li>
-            </ul>
+            <select
+              id="dropdownCountries"
+              class="dropdown"
+              name="country"
+            ></select>
           </div>
         </div>
-      </div>
-      <div class="row">
-        <!-- Map -->
-        <div class="col-lg-8">
-          <div class="row">
-            <div class="col">
-              <div class="map"></div>
-            </div>
-          </div>
+      </header>
 
+      <div class="row">
+        <div class="col-lg-8">
+          <!-- Map -->
+          <section id="map">
+            <div class="row">
+              <div class="col">
+                <div class="map"></div>
+              </div>
+            </div>
+          </section>
           <!-- End Map -->
 
           <!-- Cards Cases -->
-
-          <div class="row">
-            <div class="col">
-              <div class="card-deck">
-                <div class="card">
-                  <div class="card-header">Confirmed Cases</div>
-                  <div class="card-body">
-                    <h5 class="card-title">10000 Confirmed Cases</h5>
-                    <p class="card-text">5000 Cases today.</p>
+          <section id="card-cases">
+            <div class="row">
+              <div class="col">
+                <div class="card-deck">
+                  <div class="card">
+                    <div class="card-header">Confirmed Cases</div>
+                    <div class="card-body">
+                      <h5 class="card-title">10000 Confirmed Cases</h5>
+                      <p class="card-text">5000 Cases today.</p>
+                    </div>
                   </div>
-                </div>
-                <div class="card">
-                  <div class="card-header">Confirmed Cases</div>
-                  <div class="card-body">
-                    <h5 class="card-title">10000 Confirmed Cases</h5>
-                    <p class="card-text">5000 Cases today.</p>
+                  <div class="card">
+                    <div class="card-header">Confirmed Cases</div>
+                    <div class="card-body">
+                      <h5 class="card-title">10000 Confirmed Cases</h5>
+                      <p class="card-text">5000 Cases today.</p>
+                    </div>
                   </div>
-                </div>
-                <div class="card">
-                  <div class="card-header">Confirmed Cases</div>
-                  <div class="card-body">
-                    <h5 class="card-title">10000 Confirmed Cases</h5>
-                    <p class="card-text">5000 Cases today.</p>
+                  <div class="card">
+                    <div class="card-header">Confirmed Cases</div>
+                    <div class="card-body">
+                      <h5 class="card-title">10000 Confirmed Cases</h5>
+                      <p class="card-text">5000 Cases today.</p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </section>
+          <!-- End Cards Cases -->
         </div>
-
-        <!-- End Cards Cases -->
 
         <!-- Sidebar -->
-
         <div class="col-lg-4">
-          <div class="sidebar">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">First</th>
-                  <th scope="col">Last</th>
-                  <th scope="col">Handle</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <section id="sidebar">
+            <div class="countries-table">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Handle</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
         </div>
-
         <!-- End Sidebar -->
       </div>
     </div>

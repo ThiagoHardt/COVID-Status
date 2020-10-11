@@ -1,3 +1,4 @@
+/*--------------- General Declarations ---------------*/
 a,
 a:hover,
 a:focus,
@@ -6,24 +7,23 @@ a:active {
   color: inherit;
 }
 
+/*--------------- Header ---------------*/
+
 .dropdown {
   float: right;
   margin-top: 125px;
+  width: 150px;
 }
 
-#searchCountry {
-  padding: 20px;
-  margin-top: -8px;
-  border: 0;
-  border-radius: 0;
-  background-color: brown;
-}
+/*--------------- Map ---------------*/
 
 .map {
   background-color: brown;
-  height: 290px;
+  height: 500px;
   padding: auto;
 }
+
+/*--------------- Cards ---------------*/
 
 .card {
   display: inline-flex;
@@ -31,10 +31,14 @@ a:active {
   width: 100%;
 }
 
-.sidebar {
+/*--------------- Sidebar ---------------*/
+
+.countries-table {
   height: 100%;
   width: 100%;
 }
+
+/*--------------- Footer ---------------*/
 
 /*--------------- Media Queries ---------------*/
 
