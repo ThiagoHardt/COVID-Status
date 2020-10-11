@@ -36,7 +36,7 @@ $(document).ready(function () {
         console.error("Fetch Error -", err);
       });
   }
-
+  // Creates table with cases by country
   function createTableCountries() {
     let tbody = document.getElementById("table-body");
 
@@ -57,9 +57,12 @@ $(document).ready(function () {
             //CONSTRUCTION OF ROWS HAVING
             countryCases += "<tr>";
             countryCases += "<td>" + value.country + "</td>";
-            countryCases += "<td>" + value.cases + "</td>";
-            countryCases += "<td>" + value.recovered + "</td>";
-            countryCases += "<td>" + value.deaths + "</td>";
+            countryCases +=
+              "<td>" + numeral(value.cases).format("0 a") + "</td>";
+            countryCases +=
+              "<td>" + numeral(value.recovered).format("0 a") + "</td>";
+            countryCases +=
+              "<td>" + numeral(value.deaths).format("0 a") + "</td>";
             countryCases += "</tr>";
           });
 
@@ -71,6 +74,43 @@ $(document).ready(function () {
         console.error("Fetch Error -", err);
       });
   }
+  // Updates cars with country information
+  function updateCards(id) {
+    let cardConfirmedToday = document.getElementById("card-confirmed-today"),
+      cardConfirmedAll = document.getElementById("card-confirmed-all"),
+      cardRecoveredToday = document.getElementById("card-recovered-today"),
+      cardRecoveredAll = document.getElementById("card-recovered-all"),
+      cardDeathsToday = document.getElementById("card-deaths-today"),
+      cardDeathsAll = document.getElementById("card-deaths-all");
+
+    fetch(url + "/" + id)
+      .then(function (response) {
+        if (response.status !== 200) {
+          console.warn(
+            "Looks like there was a problem. Status Code: " + response.status
+          );
+          return;
+        }
+
+        response.json().then(function (data) {
+          cardConfirmedToday.innerHTML = data.todayCases + " Today";
+          cardConfirmedAll.innerHTML = data.cases + " Cases";
+          cardRecoveredToday.innerHTML = data.todayRecovered + " Today";
+          cardRecoveredAll.innerHTML = data.recovered + " Cases";
+          cardDeathsToday.innerHTML = data.todayDeaths + " Today";
+          cardDeathsAll.innerHTML = data.deaths + " Cases";
+        });
+      })
+      .catch(function (err) {
+        console.error("Fetch Error -", err);
+      });
+  }
+  // Get selected country from dropdownCountries
+  $("#dropdownCountries").on("change", function () {
+    var countryId = this.options[this.selectedIndex].value;
+    updateCards(countryId);
+  });
+
   createTableCountries();
   createDropdownCountries();
 });
