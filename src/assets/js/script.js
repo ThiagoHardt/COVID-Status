@@ -59,7 +59,7 @@ $(document).ready(function () {
 
           // ITERATING THROUGH OBJECTS
           $.each(data, function (key, value) {
-            //CONSTRUCTION OF ROWS HAVING
+            //CONSTRUCTION OF ROWS
             countryCases += "<tr>";
             countryCases += "<td>" + value.country + "</td>";
             countryCases +=
