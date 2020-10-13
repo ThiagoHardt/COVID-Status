@@ -6,11 +6,14 @@ $(document).ready(function () {
     let dropdown = document.getElementById("dropdownCountries");
     dropdown.length = 0;
 
+    // Set default option to global stats
     let defaultOption = document.createElement("option");
-    defaultOption.text = "Choose Country";
-
+    defaultOption.text = "Global";
+    defaultOption.value = 0;
     dropdown.add(defaultOption);
+    $(".selectpicker").selectpicker("refresh");
     dropdown.selectedIndex = 0;
+    updateCards(defaultOption.value);
 
     fetch(url)
       .then(function (response) {
@@ -27,15 +30,17 @@ $(document).ready(function () {
           for (let i = 0; i < data.length; i++) {
             option = document.createElement("option");
             option.text = data[i].country;
-            option.value = data[i].countryInfo.iso2;
+            option.value = data[i].countryInfo._id;
             dropdown.add(option);
           }
+          $(".selectpicker").selectpicker("refresh");
         });
       })
       .catch(function (err) {
         console.error("Fetch Error -", err);
       });
   }
+
   // Creates table with cases by country
   function createTableCountries() {
     let tbody = document.getElementById("table-body");
@@ -74,7 +79,8 @@ $(document).ready(function () {
         console.error("Fetch Error -", err);
       });
   }
-  // Updates cars with country information
+
+  // Updates cards with country information
   function updateCards(id) {
     let cardConfirmedToday = document.getElementById("card-confirmed-today"),
       cardConfirmedAll = document.getElementById("card-confirmed-all"),
@@ -82,8 +88,9 @@ $(document).ready(function () {
       cardRecoveredAll = document.getElementById("card-recovered-all"),
       cardDeathsToday = document.getElementById("card-deaths-today"),
       cardDeathsAll = document.getElementById("card-deaths-all");
+    let newUrl = getUrl(id);
 
-    fetch(url + "/" + id)
+    fetch(newUrl)
       .then(function (response) {
         if (response.status !== 200) {
           console.warn(
@@ -93,18 +100,36 @@ $(document).ready(function () {
         }
 
         response.json().then(function (data) {
-          cardConfirmedToday.innerHTML = data.todayCases + " Today";
-          cardConfirmedAll.innerHTML = data.cases + " Cases";
-          cardRecoveredToday.innerHTML = data.todayRecovered + " Today";
-          cardRecoveredAll.innerHTML = data.recovered + " Cases";
-          cardDeathsToday.innerHTML = data.todayDeaths + " Today";
-          cardDeathsAll.innerHTML = data.deaths + " Cases";
+          cardConfirmedToday.innerHTML =
+            numeral(data.todayCases).format("0,0") + " Today";
+          cardConfirmedAll.innerHTML =
+            numeral(data.cases).format("0,0") + " Cases";
+          cardRecoveredToday.innerHTML =
+            numeral(data.todayRecovered).format("0,0") + " Today";
+          cardRecoveredAll.innerHTML =
+            numeral(data.recovered).format("0,0") + " Cases";
+          cardDeathsToday.innerHTML =
+            numeral(data.todayDeaths).format("0,0") + " Today";
+          cardDeathsAll.innerHTML =
+            numeral(data.deaths).format("0,0") + " Cases";
         });
       })
       .catch(function (err) {
         console.error("Fetch Error -", err);
       });
   }
+
+  // Changes the url to global or countries stats
+  function getUrl(id) {
+    let newUrl;
+    if (id === "0") {
+      newUrl = "https://disease.sh/v3/covid-19/all";
+    } else {
+      newUrl = url + "/" + id;
+    }
+    return newUrl;
+  }
+
   // Get selected country from dropdownCountries
   $("#dropdownCountries").on("change", function () {
     var countryId = this.options[this.selectedIndex].value;

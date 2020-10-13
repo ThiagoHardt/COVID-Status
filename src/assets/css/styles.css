@@ -16,9 +16,9 @@ body {
 /*--------------- Header ---------------*/
 
 .dropdownCountries {
-  float: right;
-  margin-top: 125px;
-  width: 170px;
+  float: right !important;
+  margin-top: 125px !important;
+  width: 170px !important;
 }
 
 /*--------------- Map ---------------*/
@@ -53,9 +53,9 @@ body {
 
 @media screen and (max-width: 400px) {
   .dropdownCountries {
-    float: none;
-    display: block;
-    margin: auto auto 15px auto;
+    float: none !important;
+    display: block !important;
+    margin: auto auto 15px auto !important;
   }
 
   .logo {
