@@ -15,7 +15,7 @@ $(document).ready(function () {
     dropdown.add(defaultOption);
     $(".selectpicker").selectpicker("refresh");
     dropdown.selectedIndex = 0;
-    updateCards(defaultOption.value);
+    updateUI(defaultOption.value);
 
           // Populate the dropdown
           countryList.forEach((entry) => {
@@ -48,7 +48,7 @@ $(document).ready(function () {
   }
 
   // Updates cards with country information
-  function updateCards(id) {
+  function updateUI(id) {
     let cardConfirmedToday = document.getElementById("card-confirmed-today"),
       cardConfirmedAll = document.getElementById("card-confirmed-all"),
       cardRecoveredToday = document.getElementById("card-recovered-today"),
@@ -65,7 +65,6 @@ $(document).ready(function () {
           );
           return;
         }
-
         response.json().then(function (data) {
           cardConfirmedToday.innerHTML =
             numeral(data.todayCases).format("0,0") + " Today";
@@ -79,6 +78,12 @@ $(document).ready(function () {
             numeral(data.todayDeaths).format("0,0") + " Today";
           cardDeathsAll.innerHTML =
             numeral(data.deaths).format("0,0") + " Cases";
+            if (id !== "0"){
+              createMap([data.countryInfo.lat, data.countryInfo.long], 4);
+            }
+            else {
+              createMap([0, 0], 3);
+            }
         });
       })
       .catch(function (err) {
@@ -98,7 +103,8 @@ $(document).ready(function () {
   }
 
   // Fetch API data
-  function fetchData(){   
+  function fetchData(){
+      
     fetch(url)
       .then(function (response) {
         if (response.status !== 200) {
@@ -122,10 +128,30 @@ $(document).ready(function () {
       return countryList;
   }
 
+  // Creates map
+  function createMap([lat, long], zoom){
+    var container = L.DomUtil.get('map'); 
+    if(container != null){ container._leaflet_id = null; }
+
+    let map = L.map('map', {
+      center: [lat, long],
+      zoom: zoom,
+      maxBounds: [
+        [90,-180],
+        [-90, 180]
+      ]
+    });
+      
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+      noWrap: true
+    }).addTo(map);
+  }
+
   // Get selected country from dropdownCountries
   $("#dropdownCountries").on("change", function () {
-    var countryId = this.options[this.selectedIndex].value;
-    updateCards(countryId);
+    let countryId = this.options[this.selectedIndex].value;
+    updateUI(countryId);
   });
 
   fetchData();
