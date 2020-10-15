@@ -1,10 +1,12 @@
 $(document).ready(function () {
   const url = "https://disease.sh/v3/covid-19/countries";
+  let countryList = [];
 
   // Creates the dropdown with all countries
   function createDropdownCountries() {
     let dropdown = document.getElementById("dropdownCountries");
     dropdown.length = 0;
+    let option;
 
     // Set default option to global stats
     let defaultOption = document.createElement("option");
@@ -15,69 +17,34 @@ $(document).ready(function () {
     dropdown.selectedIndex = 0;
     updateCards(defaultOption.value);
 
-    fetch(url)
-      .then(function (response) {
-        if (response.status !== 200) {
-          console.warn(
-            "Looks like there was a problem. Status Code: " + response.status
-          );
-          return;
-        }
-
-        response.json().then(function (data) {
-          let option;
-
-          for (let i = 0; i < data.length; i++) {
+          // Populate the dropdown
+          countryList.forEach((entry) => {
             option = document.createElement("option");
-            option.text = data[i].country;
-            option.value = data[i].countryInfo._id;
+            option.text = entry.country;
+            option.value = entry.countryInfo._id;
             dropdown.add(option);
-          }
+          });
           $(".selectpicker").selectpicker("refresh");
-        });
-      })
-      .catch(function (err) {
-        console.error("Fetch Error -", err);
-      });
   }
 
   // Creates table with cases by country
   function createTableCountries() {
-    let tbody = document.getElementById("table-body");
-
-    fetch(url)
-      .then(function (response) {
-        if (response.status !== 200) {
-          console.warn(
-            "Looks like there was a problem. Status Code: " + response.status
-          );
-          return;
-        }
-
-        response.json().then(function (data) {
           var countryCases = "";
-
-          // ITERATING THROUGH OBJECTS
-          $.each(data, function (key, value) {
-            //CONSTRUCTION OF ROWS
+          countryList.forEach((entry) => {
+ 
+            //Construction of rows
             countryCases += "<tr>";
-            countryCases += "<td>" + value.country + "</td>";
+            countryCases += "<td>" + entry.country + "</td>";
             countryCases +=
-              "<td>" + numeral(value.cases).format("0 a") + "</td>";
+              "<td>" + numeral(entry.cases).format("0 a") + "</td>";
             countryCases +=
-              "<td>" + numeral(value.recovered).format("0 a") + "</td>";
+              "<td>" + numeral(entry.recovered).format("0 a") + "</td>";
             countryCases +=
-              "<td>" + numeral(value.deaths).format("0 a") + "</td>";
+              "<td>" + numeral(entry.deaths).format("0 a") + "</td>";
             countryCases += "</tr>";
           });
-
-          //INSERTING ROWS INTO TABLE
+          //Insert rows into table
           $("#table-cases").append(countryCases);
-        });
-      })
-      .catch(function (err) {
-        console.error("Fetch Error -", err);
-      });
   }
 
   // Updates cards with country information
@@ -130,12 +97,36 @@ $(document).ready(function () {
     return newUrl;
   }
 
+  // Fetch API data
+  function fetchData(){   
+    fetch(url)
+      .then(function (response) {
+        if (response.status !== 200) {
+          console.warn(
+            "Looks like there was a problem. Status Code: " + response.status
+          );
+          return;
+        }
+        response.json().then(function (data) {
+
+          $.each(data, function () {
+            countryList = data;
+          });
+          createTableCountries();
+          createDropdownCountries();
+        });
+      })
+      .catch(function (err) {
+        console.error("Fetch Error -", err);
+      });
+      return countryList;
+  }
+
   // Get selected country from dropdownCountries
   $("#dropdownCountries").on("change", function () {
     var countryId = this.options[this.selectedIndex].value;
     updateCards(countryId);
   });
 
-  createTableCountries();
-  createDropdownCountries();
+  fetchData();
 });
