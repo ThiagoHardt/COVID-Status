@@ -1,6 +1,45 @@
 $(document).ready(function () {
   const url = "https://disease.sh/v3/covid-19/countries";
   let countryList = [];
+  let datesList = [];
+  const ctx = document.getElementById("chart-cases").getContext("2d");
+  let chart;
+
+  const options = {
+    legend: {
+      display: false,
+    },
+    elements: {
+      point: {
+        radius: 0,
+      },
+    },
+    tooltips: { 
+      callbacks: {
+        label: function(tooltipItem, data) {
+            return numeral(tooltipItem.yLabel).format("0,0");
+        },
+        title: function() {}                
+      }
+    },
+    maintainAspectRatio: true,
+    scales: {
+      yAxes: [
+        {
+          gridLines: {
+            display: false,
+          },
+          ticks: {
+            // Include a dollar sign in the ticks
+            callback: function (value, index, values) {
+              return numeral(value).format("0a");
+            },
+          },
+        },
+      ],
+    },
+  };
+
 
   // Creates the dropdown with all countries
   function createDropdownCountries() {
@@ -47,15 +86,43 @@ $(document).ready(function () {
           $("#table-cases").append(countryCases);
   }
 
+  // Creates the cases graph 
+  function createGraph(data){
+    if(chart)
+    {chart.destroy();}
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        datasets: [{
+          label: 'Cases',
+          data: [data.cases],            
+          backgroundColor: 'rgb(255, 99, 132)',
+          borderColor: 'rgb(255, 99, 132)'},
+        {
+          label: 'Recovered',
+          data:  [data.recovered],            
+          backgroundColor: 'rgb(255, 99, 132)',
+          borderColor: 'rgb(255, 99, 132)'},
+        {
+          label: 'Deaths',
+          data: [data.deaths],            
+          backgroundColor: 'rgb(255, 99, 132)',
+          borderColor: 'rgb(255, 99, 132)'
+        }],
+      },
+      options: options
+    });
+  }
+
   // Updates cards with country information
   function updateUI(id) {
+    let newUrl = getUrl(id);
     let cardConfirmedToday = document.getElementById("card-confirmed-today"),
       cardConfirmedAll = document.getElementById("card-confirmed-all"),
       cardRecoveredToday = document.getElementById("card-recovered-today"),
       cardRecoveredAll = document.getElementById("card-recovered-all"),
       cardDeathsToday = document.getElementById("card-deaths-today"),
       cardDeathsAll = document.getElementById("card-deaths-all");
-    let newUrl = getUrl(id);
 
     fetch(newUrl)
       .then(function (response) {
@@ -67,23 +134,18 @@ $(document).ready(function () {
         }
         response.json().then(function (data) {
           cardConfirmedToday.innerHTML =
-            numeral(data.todayCases).format("0,0") + " Today";
+            numeral(data.todayCases).format("0,0") + " New Cases";
           cardConfirmedAll.innerHTML =
-            numeral(data.cases).format("0,0") + " Cases";
+            numeral(data.cases).format("0,0") + " Total Cases";
           cardRecoveredToday.innerHTML =
-            numeral(data.todayRecovered).format("0,0") + " Today";
+            numeral(data.todayRecovered).format("0,0") + " New Cases";
           cardRecoveredAll.innerHTML =
-            numeral(data.recovered).format("0,0") + " Cases";
+            numeral(data.recovered).format("0,0") + " Total Cases";
           cardDeathsToday.innerHTML =
-            numeral(data.todayDeaths).format("0,0") + " Today";
+            numeral(data.todayDeaths).format("0,0") + " New Cases";
           cardDeathsAll.innerHTML =
-            numeral(data.deaths).format("0,0") + " Cases";
-            if (id !== "0"){
-              createMap([data.countryInfo.lat, data.countryInfo.long], 4);
-            }
-            else {
-              createMap([0, 0], 3);
-            }
+            numeral(data.deaths).format("0,0") + " Total Cases";
+            createGraph(data)
         });
       })
       .catch(function (err) {
@@ -128,24 +190,28 @@ $(document).ready(function () {
       return countryList;
   }
 
-  // Creates map
-  function createMap([lat, long], zoom){
-    var container = L.DomUtil.get('map'); 
-    if(container != null){ container._leaflet_id = null; }
-
-    let map = L.map('map', {
-      center: [lat, long],
-      zoom: zoom,
-      maxBounds: [
-        [90,-180],
-        [-90, 180]
-      ]
-    });
-      
-    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-      noWrap: true
-    }).addTo(map);
+  // Fetch Historical data
+  function fetchHistory(id){
+    let historyUrl = "https://disease.sh/v3/covid-19/historical/all?lastdays=30"
+    if (id !== "0") {
+      historyUrl = "https://disease.sh/v3/covid-19/historical/" + id + "?lastdays=30"
+    }
+    fetch(historyUrl)
+      .then(function (response) {
+        if (response.status !== 200) {
+          console.warn(
+            "Looks like there was a problem. Status Code: " + response.status
+          );
+          return;
+        }
+        response.json().then(function (data) {
+            datesList = data;
+          });
+        })
+        .catch(function (err) {
+          console.error("Fetch Error -", err);
+        });
+        return datesList;
   }
 
   // Get selected country from dropdownCountries
@@ -153,6 +219,5 @@ $(document).ready(function () {
     let countryId = this.options[this.selectedIndex].value;
     updateUI(countryId);
   });
-
   fetchData();
 });

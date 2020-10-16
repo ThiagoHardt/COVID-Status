@@ -32,13 +32,8 @@ a:active {
 
 /*--------------- Map ---------------*/
 
-.map-cases {
+.chart {
   height: 500px;
-  background-color: #ffffff;
-}
-
-.map .leaflet-container {
-  height: 100%;
 }
 
 /*--------------- Cards ---------------*/
