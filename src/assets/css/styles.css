@@ -88,28 +88,6 @@ a:active {
 
 /*--------------- Sidebar ---------------*/
 
-/*--------------- Modifies Scrollbar ---------------*/
-.table-wrapper::-webkit-scrollbar {
-  width: 10px;
-}
-
-/* Track */
-.table-wrapper::-webkit-scrollbar-track {
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.6);
-}
-
-/* Handle */
-.table-wrapper::-webkit-scrollbar-thumb {
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
-  background: rgba(84, 99, 105, 0.8);
-}
-.table-wrapper::-webkit-scrollbar-thumb:window-inactive {
-  background: rgba(84, 99, 105, 0.4);
-}
-
 .table-wrapper {
   height: 675px;
   overflow: auto;
@@ -131,6 +109,30 @@ tbody {
   color: #293241;
   font-weight: 500;
 }
+
+/*--------------- Modifies Scrollbar ---------------*/
+
+.table-wrapper::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.table-wrapper::-webkit-scrollbar-track {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+/* Handle */
+.table-wrapper::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background: rgba(84, 99, 105, 0.8);
+}
+.table-wrapper::-webkit-scrollbar-thumb:window-inactive {
+  background: rgba(84, 99, 105, 0.4);
+}
+
 /*--------------- Footer ---------------*/
 
 .footer {
@@ -147,7 +149,7 @@ tbody {
   color: #ffffff;
 }
 a:hover {
-  color: #293241;
+  color: #fb3f00;
   transition: ease-in-out 0.3s;
 }
 

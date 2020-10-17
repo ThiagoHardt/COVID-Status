@@ -1,7 +1,6 @@
 $(document).ready(function () {
   const url = "https://disease.sh/v3/covid-19/countries";
   let countryList = [];
-  let datesList = [];
   const ctx = document.getElementById("chart-cases").getContext("2d");
   let chart;
 
@@ -36,7 +35,6 @@ $(document).ready(function () {
       ],
     },
   };
-
 
   // Creates the dropdown with all countries
   function createDropdownCountries() {
