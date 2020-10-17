@@ -5,24 +5,21 @@ $(document).ready(function () {
   const ctx = document.getElementById("chart-cases").getContext("2d");
   let chart;
 
+  // Defines option for the graph
   const options = {
     legend: {
       display: false,
-    },
-    elements: {
-      point: {
-        radius: 0,
-      },
     },
     tooltips: { 
       callbacks: {
         label: function(tooltipItem, data) {
             return numeral(tooltipItem.yLabel).format("0,0");
         },
-        title: function() {}                
+        title: function() {return "Cases"}                
       }
     },
     maintainAspectRatio: true,
+    responsive: true,
     scales: {
       yAxes: [
         {
@@ -30,7 +27,7 @@ $(document).ready(function () {
             display: false,
           },
           ticks: {
-            // Include a dollar sign in the ticks
+            fontColor: 'rgb(255, 255, 255)',
             callback: function (value, index, values) {
               return numeral(value).format("0a");
             },
@@ -75,12 +72,7 @@ $(document).ready(function () {
             countryCases += "<tr>";
             countryCases += "<td>" + entry.country + "</td>";
             countryCases +=
-              "<td>" + numeral(entry.cases).format("0 a") + "</td>";
-            countryCases +=
-              "<td>" + numeral(entry.recovered).format("0 a") + "</td>";
-            countryCases +=
-              "<td>" + numeral(entry.deaths).format("0 a") + "</td>";
-            countryCases += "</tr>";
+              "<td>" + numeral(entry.cases).format("0,0") + "</td>";
           });
           //Insert rows into table
           $("#table-cases").append(countryCases);
@@ -96,18 +88,15 @@ $(document).ready(function () {
         datasets: [{
           label: 'Cases',
           data: [data.cases],            
-          backgroundColor: 'rgb(255, 99, 132)',
-          borderColor: 'rgb(255, 99, 132)'},
+          backgroundColor: 'rgb(254, 127, 45)'},
         {
           label: 'Recovered',
           data:  [data.recovered],            
-          backgroundColor: 'rgb(255, 99, 132)',
-          borderColor: 'rgb(255, 99, 132)'},
+          backgroundColor: 'rgb(252, 202, 70)'},
         {
           label: 'Deaths',
           data: [data.deaths],            
-          backgroundColor: 'rgb(255, 99, 132)',
-          borderColor: 'rgb(255, 99, 132)'
+          backgroundColor: 'rgb(251, 63, 0)'
         }],
       },
       options: options
@@ -188,30 +177,6 @@ $(document).ready(function () {
         console.error("Fetch Error -", err);
       });
       return countryList;
-  }
-
-  // Fetch Historical data
-  function fetchHistory(id){
-    let historyUrl = "https://disease.sh/v3/covid-19/historical/all?lastdays=30"
-    if (id !== "0") {
-      historyUrl = "https://disease.sh/v3/covid-19/historical/" + id + "?lastdays=30"
-    }
-    fetch(historyUrl)
-      .then(function (response) {
-        if (response.status !== 200) {
-          console.warn(
-            "Looks like there was a problem. Status Code: " + response.status
-          );
-          return;
-        }
-        response.json().then(function (data) {
-            datesList = data;
-          });
-        })
-        .catch(function (err) {
-          console.error("Fetch Error -", err);
-        });
-        return datesList;
   }
 
   // Get selected country from dropdownCountries
