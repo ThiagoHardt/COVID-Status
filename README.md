@@ -1,73 +1,69 @@
+
 # COVID-19 Tracker
 
 Hello there!
 
-This project aims to create a fully functional static front-end site using technologies learned throughout Code Institute full stack web developer course.
-
-![Website](https://img.shields.io/website?style=for-the-badge&url=https%3A%2F%2Fthiagohardt.github.io%2Fthiago-hardt-portfolio%2) ![GitHub last commit](https://img.shields.io/github/last-commit/thiagohardt/covid-tracker?style=for-the-badge) ![enter image description here](https://img.shields.io/github/languages/count/thiagohardt/covid-tracker?style=for-the-badge)
+![Website](https://img.shields.io/website?style=for-the-badge&url=https://thiagohardt.github.io/COVID-Tracker/) ![GitHub last commit](https://img.shields.io/github/last-commit/thiagohardt/covid-tracker?style=for-the-badge) ![enter image description here](https://img.shields.io/github/languages/count/thiagohardt/covid-tracker?style=for-the-badge)
  
-![2zIyxV.md.png](https://iili.io/2zIyxV.md.png)
-
-A live version can be found [here](https://thiagohardt.github.io/#/).
+ ![enter image description here](https://iili.io/3cktCg.png)
+A live version can be found [here](https://thiagohardt.github.io/COVID-Tracker/).
 
 # UX
 
 This is a website for a beginner full-stack software developer.
-The main goal of the page is to create a web presence and act as a link between the developer and potential employers and or clients.
+The main goal of the page is to track cases of COVID-19.
 
-One of the most important aspects of the website is to keep the navigation simple and as straight-forward as possible. To achieve that I have opted to use a one-page structure, with the main information being the “hero” image followed by the developer’s name and a quick access button linking to the “about” section and another to a downloadable _CV_. Utilizing this structure I make that the most critical information will be not more than 3 clicks away from the user.
+The page shows simple information in the form of graphs and tables so the user can 
+easily find what he is looking for.
+The cases can be filtered by Global data or by a specific country.
+The main data displayed shows new cases, total cases, recovered cases, and deaths by the virus..
 
 ## User Story
 
  **As a visitor**
- - As a Visitor, I want to easily understand the main purpose of the site and learn more about the developer.
- -  As a Visitor, I want to be able to easily navigate throughout the site to find content. 
- - As a visitor, I want to find previous projects that the developer has been part of. 
- - As a visitor, I want to download the developer’s CV. 
- - As a visitor, I want to contact the developer.
-
+ - As a Visitor, I want to easily understand the main purpose of the site.
+ - As a Visitor, I want to be shown live data of COVID-19 Cases around the world.
+ - As a visitor, I want to be able to find statistcs about a selected country or worldwide cases. 
+  - As a visitor, I want to be able to find total cases. 
+  - As a visitor, I want to be able to find new cases.
+  - As a visitor, I want to be able to find recovered cases.
+  - As a visitor, I want to be able to find deaths by the virus.
 
 ## MVP
-The page consists of 4 main sections: Home, About, Projects, and Contact.
+The page consists of 4 main sections. **Country selector**, **Data chart**, **Cases cards**, **Table of cases**.
   
 
-:white_check_mark: Fully responsive<br>
-:white_check_mark: Downloadable CV <br>
-:white_check_mark: About section <br>
-:white_check_mark: Projects section <br>
-:white_check_mark: Contact Form section<br>
+:white_check_mark: Fully responsive.<br>
+:white_check_mark: Graph/Chart showing cases by country. <br>
+:white_check_mark: Filter data by country.  <br>
+:white_check_mark: Global statistcs. <br>
+:white_check_mark: Table with total cases globally. <br>
 
 ### Existing Features
 
-- **Home:**
-Contains the main information and it’s where you first land.
+- **Country selector**
+Gives the user the ability of filtering the data by desired country.
 
-- **About:**
-Quickly brief about the developer’s background and skills, with an option to download CV for further information.
+- **Data chart**
+Shows the data in the form of a chart of confirmed cases, recovered cases and deaths .
 
-- **Projects:**
-The main projects the developer worked on. Every project contains a short brief to describe it and two buttons, One for a live view of the project and one for the source code.
+- **Cases cards**
+Show **New** and **Total** for **Confirmed Cases**, **Recovered Cases** and **Deaths**..
 
-- **Contact:**
-Contact form and social links.
-- **Download CV Button:** This feature enables the user to directly download a .pdf version of the developer’s CV.
-
-### Features Left to Implement
-
-- Possibly a **Blog** feature where the user can showcase interests and IT related content.
+- **Table of cases**
+Shows **Confirmed** cases for all countries.
 
 ## Design
 
 ### Wireframe
-The wireframe for the project can be found [here](https://www.figma.com/file/IaVtu8YZM7oZCzBSSpasxd/personal-portfolio-wirerame?node-id=11:287).
+The wireframe for the project can be found [here](https://www.figma.com/proto/QCZBjDGhDjVzLoxiJDTtds/COVID-Tracker---Wireframe?node-id=11%3A59&scaling=min-zoom).
 
 ### Color Scheme
-![2Iaxbn.md.png](https://iili.io/2Iaxbn.md.png)
+![3cjMZb.md.png](https://iili.io/3cjMZb.md.png)
 
 ### Typography
 
 **Body:** Roboto<br>
-**Header:** Oswald
 
 
 ## Technologies Used
@@ -78,74 +74,86 @@ Throughout the project, the following technologies were used.
   - The project uses **HTML5**
 - [CSS3](https://developer.mozilla.org/en-US/docs/Archive/CSS3)
   - The project uses **CSS3** to create styles for the page.
+- [jQuery](https://jquery.com/)
+  - The project uses **jQuery** for DOM manipulation.
 - [Bootstrap 4.5.x](https://getbootstrap.com/)
   - The project uses **Bootstrap 4.5** for quick responsiveness and pre-made components.
-- [StackEdit](https://stackedit.io/)
-  - The project uses **StackEdit** to write the README file.
-- [Hover](https://ianlunn.github.io/Hover/)
-  - The project uses **Hover** for quick hover effects.
- - [ScrollReveal](https://scrollrevealjs.org/)
-   - The project uses **ScrollReveal** to apply scrolling effects.
+ - [Bootstrap-Select](https://github.com/heimrichhannot/bootstrap-select)
+	  - The project uses **Bootstrap-Select**  jQuery plugin that utilizes Bootstrap's dropdown.js to style and bring additional functionality to standard select elements.
+- [Dillinger](https://dillinger.io/)
+  - The project uses **Dillinger** to write the README file.
+- [Numeral.js](http://numeraljs.com/)
+  - The project uses **Numeral.js** to help with number formating.
+ - [Chart.js](https://www.chartjs.org/)
+	  - The project uses **Chart.js** to quickly make graphs and charts.
+	 
+### API
+- [Open Disease Data](https://disease.sh/)
+  - The project uses **Open Disease Data** to get all the data.
+
+
 
 ## Testing
 
-![W3C Validation](https://img.shields.io/w3c-validation/html?style=for-the-badge&targetUrl=https%3A%2F%2Fthiagohardt.github.io%2Fthiago-hardt-portfolio%2F) ![CSS3 Validator](https://img.shields.io/badge/CSS3-validated-success?style=for-the-badge) ![CSS3 Validator](https://img.shields.io/badge/TEsts-passed-success?style=for-the-badge)<br> 
+![W3C Validation](https://img.shields.io/w3c-validation/html?style=for-the-badge&targetUrl=https://thiagohardt.github.io/COVID-Tracker/) ![CSS3 Validator](https://img.shields.io/badge/CSS3-validated-success?style=for-the-badge) ![CSS3 Validator](https://img.shields.io/badge/TEsts-passed-success?style=for-the-badge)<br> 
 ![FireFox](https://img.shields.io/badge/firefox-passed-success?style=for-the-badge) ![Chrome](https://img.shields.io/badge/Chrome-passed-success?style=for-the-badge) ![Edge](https://img.shields.io/badge/edge-passed-success?style=for-the-badge)
 ![Mobile](https://img.shields.io/badge/Mobile-passed-success?style=for-the-badge)
 
 ### Testing User Stories 
+ - **As a Visitor, I want to easily understand the main purpose of the site**
+Upon entering the page I can easily identify what the page is trying to inform.
+The data is presented in an easy and clear way.
 
- **As a Visitor, I want to easily understand the main purpose of the site and learn more about the developer.**
-- Upon entering the site I have a clear idea of what the page is about.
-- I can see a clear descriptive text and a hero image.
-- I have two options presented by call to action buttons. One taking to the “About” section and one to download a CV.
+ - **As a Visitor, I want to be shown live data of COVID-19 Cases around the world**.
+The data showed matches the live number of cases according to the Open Disease Data API.
 
-**As a Visitor, I want to be able to easily navigate throughout the site to find content.**
-- The site has a navbar that sticks to the top of the page, making the navigation easy and intuitive.
-- In mobile version, the navbar contracts into a collapsible button to avoid cluttering the screen.
-- The navigation is easy and objective with clear headings on top of every section.
+ - **As a visitor, I want to be able to find statistcs about a selected country or worldwide cases**. 
+ When I select a country from the dropdown menu I am presented with graphs and data that match what I selected.
+If nothing is selected I am presented with Global data instead.
 
- **As a visitor, I want to find previous projects that the developer has been part of.**
-- The “Projects” page can be found by clicking on the respective link in the navbar or just scrolling down.
-- It shows a short description of projects and their links to the source code aswell as a live version when possible.
+  - **As a visitor, I want to be able to find total cases**. 
+  I can see the number of total cases for the selected country in the cards.
+  The total number of cases is shown on every card and also on the table.
+  I can also see the number of total cases on the graph.
+  
+  - **As a visitor, I want to be able to find new cases**.
+I can see the number of new cases for the selected country in the cards.
+The total number of cases is shown on every card.
 
-**As a visitor, I want to download the developer’s CV.**
-- I can easily download a PDF file with the CV from the “About” section or the “Home” section.
+- **As a visitor, I want to be able to find Confirmed cases**.
+The card “Confirmed” shows me the new and total confirmed cases for the selected country.
+If nothing is selected it shows Global by default.
 
-**As a visitor, I want to contact the developer.**
-- At the end of the page there is a simple contact form that can be filled for easy contact.
+ - **As a visitor, I want to be able to find recovered cases**.
+The card “Recovered” shows me the new and total recovered cases for the selected country.
+If nothing is selected it shows Global by default.
+
+  - **As a visitor, I want to be able to find deaths by the virus**.
+The card “Deaths” shows me the new and total number of deaths for the selected country.
+If nothing is selected it shows Global by default.
 
 ### General Testing
-**Navbar:**
+**Country Selector:**
 
-✅  Links take to the right section.  <br>
-✅  Links highlight when active.  <br>
-✅  Navbar resizes when in smaller screens.  <br>
-✅  The Dropdown menu closes after clicking on a link.  <br>
+✅  Selects "Global" as default.  <br>
+✅  Shows all 216 available countries.  <br>
 
-**Hero/Home:**
+**Graph/Chart**
 
-✅  "View my work" button take takes you to the projects section.  <br>
-✅  "Check my CV" button open a PDF file in a new tab.  <br>
-✅  Content adapts to smaller screen devices.<br>
+✅  "Shows "Global" data as default.  <br>
+✅  "Shows data acording to what is selected in the "Country Selector".  <br>
+✅  Animates when data is changed.<br>
 
- **About:**
+ **Cards Cases**
  
-   :white_check_mark:  "Check my CV" button open a PDF file in a new tab.<br>
-   :white_check_mark:  Content adapts to a single collum on smaller screen devices.<br>
+   :white_check_mark:  Show "Global" data as default.<br>
+   :white_check_mark:  Show **New** and **Total** for **Confirmed Cases**, **Recovered Cases** and **Deaths** data correctly.<br>
+   ✅  Shows data acording to what is selected in the "Country Selector".  <br>
     
-**Contact**
+**Table**
 
-   :white_check_mark:  Go to the "Contact Us" page.<br>
-   :white_check_mark:  Submit the empty form and verify that an error message about the required fields appears.<br>
-   :white_check_mark:  Submit the form with an invalid email address and verify that a relevant error message appears.<br>
-   :white_check_mark:  Submit the form without a message and verify that a relevant error message appears.<br>
-   :white_check_mark: Try to submit the form with all inputs valid.<br>
+   :white_check_mark:  Shows **Confirmed total** cases for all countries.<br>
 
-
-### Known Issues
-
-:x: Contact Form doesn't actually send any e-mail. 
 
 ### Browsers
 
@@ -154,21 +162,22 @@ Throughout the project, the following technologies were used.
  :white_check_mark: Links <br>
  :white_check_mark: Animations<br>
  :white_check_mark: Responsiveness<br>
- :white_check_mark: Form Validation<br>
+ :white_check_mark: Data<br>
 
 **Chrome**
 
  :white_check_mark: Links <br>
  :white_check_mark: Animations<br>
  :white_check_mark: Responsiveness<br>
- :white_check_mark: Form Validation<br>
+ :white_check_mark: Data<br>
 
 **Edge**
 
  :white_check_mark: Links <br>
  :white_check_mark: Animations<br>
  :white_check_mark: Responsiveness<br>
- :white_check_mark: Form Validation<br>
+  :white_check_mark: Data<br>
+
  
 
 ## Deployment
@@ -188,7 +197,7 @@ If you want to fork the repository to your own GitHub account you can by clickin
 ### Cloning
 
  1. If you want to clone the repository into a local file you can by:
- 2. Clicking on the green button “Code” and copying the url shown.
+ 2. Clicking on the green button “Code” and copying the url showed.
  3. Open GitBash
  4. Change directory to the desired location where you want to clone the
     files to.
@@ -200,12 +209,15 @@ If you want to fork the repository to your own GitHub account you can by clickin
 ### Content
 
 - All content on the page was created by me. 
+- All data was retrieved from the API - [disease.sh](https://disease.sh/)
 
 ### Media
 
-- Photos by [Sarah Ryan ](https://www.sarahryanphoto.com/?fbclid=IwAR3730d96HQXLyUQcNkw34EYJ9-y29WRntj8SY_hU9366dvhbUaDK2_jgeo) and [Niall O'Kelly](https://niallokelly.com/?fbclid=IwAR3730d96HQXLyUQcNkw34EYJ9-y29WRntj8SY_hU9366dvhbUaDK2_jgeo).
+- Background image from [Unsplash ](https://unsplash.com/photos/k0KRNtqcjfw)
+
 ### Acknowledgements
 
 -   My Mentor, **Oluwafemi Medale** for continuous helpful feedback.
+- The inspiration for this project came from the YouTube channel [Clever Programmer](https://www.youtube.com/channel/UCqrILQNl5Ed9Dz6CGMyvMTQ) and can be found [here](https://youtu.be/cF3pIMJUZxM).
 
 
