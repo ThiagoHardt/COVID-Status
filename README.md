@@ -209,7 +209,7 @@ If you want to fork the repository to your own GitHub account you can by clickin
 ### Content
 
 - All content on the page was created by me. 
-- All data was retrieved from nthe API - [disease.sh](https://disease.sh/)
+- All data was retrieved from the API - [disease.sh](https://disease.sh/)
 
 ### Media
 
