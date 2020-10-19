@@ -38,10 +38,19 @@ a:active {
 
 /*--------------- Header ---------------*/
 
+.logo-wrapper {
+  display: contents;
+}
+
+.logo {
+  display: block;
+  margin: auto;
+}
+
 .select-countries {
-  float: right !important;
-  margin-top: 125px !important;
-  width: auto !important;
+  display: block !important;
+  max-width: 360px !important;
+  margin: auto !important;
 }
 
 .btn-select {
@@ -62,6 +71,7 @@ a:active {
 /*--------------- Chart ---------------*/
 
 .chart-cases {
+  margin: 25px auto 40px auto;
   max-height: 500px;
 }
 
@@ -87,6 +97,11 @@ a:active {
 }
 
 /*--------------- Sidebar ---------------*/
+.table-label {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin: 15px auto 10px auto;
+}
 
 .table-wrapper {
   height: 675px;
@@ -136,7 +151,7 @@ tbody {
 /*--------------- Footer ---------------*/
 
 .footer {
-  height: 45px;
+  height: auto;
   margin-top: auto;
   background-color: black;
   z-index: 1;
@@ -153,6 +168,17 @@ a:hover {
   transition: ease-in-out 0.3s;
 }
 
+.icon-footer {
+  font-size: 1.5rem;
+  color: #ffffff;
+  margin: auto 5px auto 5px;
+}
+
+.icon-footer:hover {
+  color: #fb3f00;
+  transition: ease-in-out 0.3s;
+}
+
 /*--------------- Media Queries ---------------*/
 
 @media screen and (max-width: 600px) {
@@ -165,6 +191,12 @@ a:hover {
 
   .logo {
     margin: auto;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  #text-footer {
     display: block;
   }
 }

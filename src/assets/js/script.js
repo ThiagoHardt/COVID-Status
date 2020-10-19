@@ -1,8 +1,9 @@
 $(document).ready(function () {
-  const url = "https://disease.sh/v3/covid-19/countries";
+  const urlCountries = "https://disease.sh/v3/covid-19/countries";
+  const urlGlobalCases = "https://disease.sh/v3/covid-19/all";
   let countryList = [];
-  const ctx = document.getElementById("chart-cases").getContext("2d");
   let chart;
+  const ctx = document.getElementById("chart-cases").getContext("2d");
 
   // Defines option for the graph
   const options = {
@@ -10,16 +11,23 @@ $(document).ready(function () {
       display: false,
     },
     tooltips: { 
+      enabled: false,
       callbacks: {
         label: function(tooltipItem, data) {
             return numeral(tooltipItem.yLabel).format("0,0");
-        },
-        title: function() {return "Cases"}                
+        }              
       }
     },
     maintainAspectRatio: true,
     responsive: true,
     scales: {
+      xAxes: [
+        {
+          gridLines: {
+            display: false,
+          }
+        }
+      ],
       yAxes: [
         {
           gridLines: {
@@ -29,11 +37,11 @@ $(document).ready(function () {
             fontColor: 'rgb(255, 255, 255)',
             callback: function (value, index, values) {
               return numeral(value).format("0a");
-            },
-          },
-        },
-      ],
-    },
+            }
+          }
+        }
+      ]
+    }
   };
 
   // Creates the dropdown with all countries
@@ -51,51 +59,49 @@ $(document).ready(function () {
     dropdown.selectedIndex = 0;
     updateUI(defaultOption.value);
 
-          // Populate the dropdown
-          countryList.forEach((entry) => {
-            option = document.createElement("option");
-            option.text = entry.country;
-            option.value = entry.countryInfo._id;
-            dropdown.add(option);
-          });
-          $(".selectpicker").selectpicker("refresh");
+    // Populate the dropdown
+    countryList.forEach((entry) => {
+      option = document.createElement("option");
+      option.text = entry.country;
+      option.value = entry.countryInfo._id;
+      dropdown.add(option);
+    });
+    $(".selectpicker").selectpicker("refresh");
   }
 
   // Creates table with cases by country
   function createTableCountries() {
-          var countryCases = "";
-          countryList.forEach((entry) => {
- 
-            //Construction of rows
-            countryCases += "<tr>";
-            countryCases += "<td>" + entry.country + "</td>";
-            countryCases +=
-              "<td>" + numeral(entry.cases).format("0,0") + "</td>";
-          });
-          //Insert rows into table
-          $("#table-cases").append(countryCases);
+
+    var countryCases = "";
+
+    countryList.forEach((entry) => {
+      //Construction of rows
+      countryCases += "<tr><td>" + entry.country + "</td><td>" + numeral(entry.cases).format("0,0") + "</td></tr>";
+    });
+    //Insert rows into table
+    $("#table-cases").append(countryCases);
   }
 
   // Creates the cases graph 
   function createGraph(data){
     if(chart)
     {chart.destroy();}
+    Chart.defaults.global.defaultFontColor = "#fff";
+    Chart.defaults.global.defaultFontFamily = "Roboto";
+    Chart.defaults.global.defaultFontSize = "15";
+
     chart = new Chart(ctx, {
       type: 'bar',
       data: {
+        labels: ['Confirmed', 'Recovered', 'Deaths'],
         datasets: [{
-          label: 'Cases',
-          data: [data.cases],            
-          backgroundColor: 'rgb(254, 127, 45)'},
-        {
-          label: 'Recovered',
-          data:  [data.recovered],            
-          backgroundColor: 'rgb(252, 202, 70)'},
-        {
-          label: 'Deaths',
-          data: [data.deaths],            
-          backgroundColor: 'rgb(251, 63, 0)'
-        }],
+            data: [data.cases, data.recovered, data.deaths],
+            backgroundColor: [
+                'rgba(254, 127, 45)',
+                'rgba(252, 202, 70)',
+                'rgb(251, 63, 0)'
+            ]
+        }]
       },
       options: options
     });
@@ -103,6 +109,7 @@ $(document).ready(function () {
 
   // Updates cards with country information
   function updateUI(id) {
+    
     let newUrl = getUrl(id);
     let cardConfirmedToday = document.getElementById("card-confirmed-today"),
       cardConfirmedAll = document.getElementById("card-confirmed-all"),
@@ -142,19 +149,16 @@ $(document).ready(function () {
 
   // Changes the url to global or countries stats
   function getUrl(id) {
-    let newUrl;
-    if (id === "0") {
-      newUrl = "https://disease.sh/v3/covid-19/all";
-    } else {
-      newUrl = url + "/" + id;
-    }
+    
+    let newUrl = id === "0" ? urlGlobalCases : (urlCountries + "/" + id)
+
     return newUrl;
   }
 
   // Fetch API data
   function fetchData(){
       
-    fetch(url)
+    fetch(urlCountries)
       .then(function (response) {
         if (response.status !== 200) {
           console.warn(
