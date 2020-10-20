@@ -1,6 +1,6 @@
+const COUNTRIES_URL = "https://disease.sh/v3/covid-19/countries";
+const GLOBAL_CASES_URL = "https://disease.sh/v3/covid-19/all";
 $(document).ready(function () {
-  const urlCountries = "https://disease.sh/v3/covid-19/countries";
-  const urlGlobalCases = "https://disease.sh/v3/covid-19/all";
   let countryList = [];
   let chart;
   const ctx = document.getElementById("chart-cases").getContext("2d");
@@ -150,15 +150,14 @@ $(document).ready(function () {
   // Changes the url to global or countries stats
   function getUrl(id) {
     
-    let newUrl = id === "0" ? urlGlobalCases : (urlCountries + "/" + id)
+    return newUrl = id === "0" ? GLOBAL_CASES_URL : (COUNTRIES_URL + "/" + id)
 
-    return newUrl;
   }
 
-  // Fetch API data
+  // Fetch Countries Data List
   function fetchData(){
       
-    fetch(urlCountries)
+    fetch(COUNTRIES_URL)
       .then(function (response) {
         if (response.status !== 200) {
           console.warn(

@@ -50,7 +50,7 @@ a:active {
 .select-countries {
   display: block !important;
   width: 500px !important;
-  margin: auto !important;
+  margin: auto auto auto 0px !important;
 }
 
 .btn-select {
@@ -193,6 +193,12 @@ a:hover {
     margin: auto;
     display: block;
   }
+
+  .table-label {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 15px auto 10px auto;
+  }
 }
 
 @media screen and (max-width: 390px) {
@@ -203,7 +209,7 @@ a:hover {
 
 @media screen and (max-width: 1366px) {
   .table-wrapper {
-    height: 610px;
+    height: 600px;
     overflow: auto;
   }
 }
