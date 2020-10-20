@@ -6,6 +6,7 @@ Hello there!
 ![Website](https://img.shields.io/website?style=for-the-badge&url=https://thiagohardt.github.io/COVID-Tracker/) ![GitHub last commit](https://img.shields.io/github/last-commit/thiagohardt/covid-tracker?style=for-the-badge) ![enter image description here](https://img.shields.io/github/languages/count/thiagohardt/covid-tracker?style=for-the-badge)
  
 [![31b9Fj.md.png](https://iili.io/31b9Fj.md.png)](https://freeimage.host/i/31b9Fj)
+
 A live version can be found [here](https://thiagohardt.github.io/COVID-Tracker/).
 
 # UX
